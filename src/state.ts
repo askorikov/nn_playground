@@ -45,7 +45,11 @@ export let datasets: {[key: string]: dataset.DataGenerator} = {
 /** A map between dataset names and functions that generate regression data. */
 export let regDatasets: {[key: string]: dataset.DataGenerator} = {
   "reg-plane": dataset.regressPlane,
-  "reg-gauss": dataset.regressGaussian
+  "reg-gauss": dataset.regressGaussian,
+  "reg-mnist-2": dataset.regressMNIST2,
+  "reg-mnist-4": dataset.regressMNIST4,
+  "reg-mnist-5": dataset.regressMNIST5,
+  "reg-mnist-9": dataset.regressMNIST9
 };
 
 export function getKeyFromValue(obj: any, value: any): string {
@@ -119,13 +123,17 @@ export class State {
     {name: "percTrainData", type: Type.NUMBER},
     {name: "x", type: Type.BOOLEAN},
     {name: "y", type: Type.BOOLEAN},
-    {name: "xTimesY", type: Type.BOOLEAN},
-    {name: "xSquared", type: Type.BOOLEAN},
-    {name: "ySquared", type: Type.BOOLEAN},
-    {name: "cosX", type: Type.BOOLEAN},
-    {name: "sinX", type: Type.BOOLEAN},
-    {name: "cosY", type: Type.BOOLEAN},
-    {name: "sinY", type: Type.BOOLEAN},
+    // {name: "xTimesY", type: Type.BOOLEAN},
+    // {name: "xSquared", type: Type.BOOLEAN},
+    // {name: "ySquared", type: Type.BOOLEAN},
+    {name: "sinX0", type: Type.BOOLEAN},
+    {name: "cosX0", type: Type.BOOLEAN},
+    {name: "sinX1", type: Type.BOOLEAN},
+    {name: "cosX1", type: Type.BOOLEAN},
+    {name: "sinY0", type: Type.BOOLEAN},
+    {name: "cosY0", type: Type.BOOLEAN},
+    {name: "sinY1", type: Type.BOOLEAN},
+    {name: "cosY1", type: Type.BOOLEAN},
     {name: "collectStats", type: Type.BOOLEAN},
     {name: "tutorial", type: Type.STRING},
     {name: "problem", type: Type.OBJECT, keyMap: problems},
@@ -141,10 +149,10 @@ export class State {
   batchSize = 10;
   discretize = false;
   tutorial: string = null;
-  percTrainData = 50;
+  percTrainData = 100;
   activation = nn.Activations.TANH;
   regularization: nn.RegularizationFunction = null;
-  problem = Problem.CLASSIFICATION;
+  problem = Problem.REGRESSION;
   initZero = false;
   hideText = false;
   collectStats = false;
@@ -153,15 +161,19 @@ export class State {
   networkShape: number[] = [4, 2];
   x = true;
   y = true;
-  xTimesY = false;
-  xSquared = false;
-  ySquared = false;
-  cosX = false;
-  sinX = false;
-  cosY = false;
-  sinY = false;
+  // xTimesY = false;
+  // xSquared = false;
+  // ySquared = false;
+  sinX0 = false;
+  cosX0 = false;
+  sinX1 = false;
+  cosX1 = false;
+  sinY0 = false;
+  cosY0 = false;
+  sinY1 = false;
+  cosY1 = false;
   dataset: dataset.DataGenerator = dataset.classifyCircleData;
-  regDataset: dataset.DataGenerator = dataset.regressPlane;
+  regDataset: dataset.DataGenerator = dataset.regressGaussian;
   seed: string;
 
   /**

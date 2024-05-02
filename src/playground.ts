@@ -65,11 +65,17 @@ interface InputFeature {
 let INPUTS: {[name: string]: InputFeature} = {
   "x": {f: (x, y) => x, label: "X_1"},
   "y": {f: (x, y) => y, label: "X_2"},
-  "xSquared": {f: (x, y) => x * x, label: "X_1^2"},
-  "ySquared": {f: (x, y) => y * y,  label: "X_2^2"},
-  "xTimesY": {f: (x, y) => x * y, label: "X_1X_2"},
-  "sinX": {f: (x, y) => Math.sin(x), label: "sin(X_1)"},
-  "sinY": {f: (x, y) => Math.sin(y), label: "sin(X_2)"},
+  // "xSquared": {f: (x, y) => x * x, label: "X_1^2"},
+  // "ySquared": {f: (x, y) => y * y,  label: "X_2^2"},
+  // "xTimesY": {f: (x, y) => x * y, label: "X_1X_2"},
+  "sinX0": {f: (x, y) => Math.sin(Math.PI * x/6), label: "sin(2^0πx)"},
+  "cosX0": {f: (x, y) => Math.cos(Math.PI * x/6), label: "cos(2^0πx)"},
+  "sinX1": {f: (x, y) => Math.sin(2*Math.PI * x/6), label: "sin(2^1πx))"},
+  "cosX1": {f: (x, y) => Math.cos(2*Math.PI * x/6), label: "cos(2^1πx))"},
+  "sinY0": {f: (x, y) => Math.sin(Math.PI * y/6), label: "sin(2^0πy)"},
+  "cosY0": {f: (x, y) => Math.cos(Math.PI * y/6), label: "cos(2^0πy)"},
+  "sinY1": {f: (x, y) => Math.sin(2*Math.PI * y/6), label: "sin(2^1πy)"},
+  "cosY1": {f: (x, y) => Math.cos(2*Math.PI * y/6), label: "sin(2^1πy)"}
 };
 
 let HIDABLE_CONTROLS = [
@@ -170,10 +176,9 @@ let trainData: Example2D[] = [];
 let testData: Example2D[] = [];
 let network: nn.Node[][] = null;
 let lossTrain = 0;
-let lossTest = 0;
+// let lossTest = 0;
 let player = new Player();
-let lineChart = new AppendingLineChart(d3.select("#linechart"),
-    ["#777", "black"]);
+let lineChart = new AppendingLineChart(d3.select("#linechart"), ["#777"]);
 
 function makeGUI() {
   d3.select("#reset-button").on("click", () => {
@@ -881,9 +886,9 @@ function updateUI(firstStep = false) {
 
   // Update loss and iteration number.
   d3.select("#loss-train").text(humanReadable(lossTrain));
-  d3.select("#loss-test").text(humanReadable(lossTest));
+  // d3.select("#loss-test").text(humanReadable(lossTest));
   d3.select("#iter-number").text(addCommas(zeroPad(iter)));
-  lineChart.addDataPoint([lossTrain, lossTest]);
+  lineChart.addDataPoint([lossTrain]);
 }
 
 function constructInputIds(): string[] {
@@ -918,7 +923,7 @@ function oneStep(): void {
   });
   // Compute the loss.
   lossTrain = getLoss(network, trainData);
-  lossTest = getLoss(network, testData);
+  // lossTest = getLoss(network, testData);
   updateUI();
 }
 
@@ -958,7 +963,7 @@ function reset(onStartup=false) {
   network = nn.buildNetwork(shape, state.activation, outputActivation,
       state.regularization, constructInputIds(), state.initZero);
   lossTrain = getLoss(network, trainData);
-  lossTest = getLoss(network, testData);
+  // lossTest = getLoss(network, testData);
   drawNetwork(network);
   updateUI(true);
 };
@@ -1000,7 +1005,7 @@ function drawDatasetThumbnails() {
     let data = dataGenerator(200, 0);
     data.forEach(function(d) {
       context.fillStyle = colorScale(d.label);
-      context.fillRect(w * (d.x + 6) / 12, h * (d.y + 6) / 12, 4, 4);
+      context.fillRect(w * (d.x + 6) / 12, h * (6 - d.y) / 12, 4, 4);
     });
     d3.select(canvas.parentNode).style("display", null);
   }
@@ -1099,17 +1104,17 @@ function userHasInteracted() {
   if (state.tutorial != null && state.tutorial !== '') {
     page = `/v/tutorials/${state.tutorial}`;
   }
-  ga('set', 'page', page);
-  ga('send', 'pageview', {'sessionControl': 'start'});
+  // ga('set', 'page', page);
+  // ga('send', 'pageview', {'sessionControl': 'start'});
 }
 
 function simulationStarted() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Starting Simulation',
-    eventAction: parametersChanged ? 'changed' : 'unchanged',
-    eventLabel: state.tutorial == null ? '' : state.tutorial
-  });
+  // ga('send', {
+  //   hitType: 'event',
+  //   eventCategory: 'Starting Simulation',
+  //   eventAction: parametersChanged ? 'changed' : 'unchanged',
+  //   eventLabel: state.tutorial == null ? '' : state.tutorial
+  // });
   parametersChanged = false;
 }
 

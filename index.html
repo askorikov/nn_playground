@@ -49,9 +49,9 @@ limitations under the License.
     </svg>
   </a>
   <!-- Header -->
-  <header>
+  <!-- <header>
     <h1 class="l--page">Tinker With a <b>Neural Network</b> <span class="optional">Right Here </span>in Your Browser.<br>Don’t Worry, You Can’t Break It. We Promise.</h1>
-  </header>
+  </header> -->
 
   <!-- Top Controls -->
   <div id="top-controls">
@@ -169,16 +169,28 @@ limitations under the License.
           <div class="dataset" title="Multi gaussian">
             <canvas class="data-thumbnail" data-regDataset="reg-gauss"></canvas>
           </div>
+          <div class="dataset" title="Image">
+            <canvas class="data-thumbnail" data-regDataset="reg-mnist-2"></canvas>
+          </div>
+          <div class="dataset" title="Image">
+            <canvas class="data-thumbnail" data-regDataset="reg-mnist-4"></canvas>
+          </div>
+          <div class="dataset" title="Image">
+            <canvas class="data-thumbnail" data-regDataset="reg-mnist-5"></canvas>
+          </div>
+          <div class="dataset" title="Image">
+            <canvas class="data-thumbnail" data-regDataset="reg-mnist-9"></canvas>
+          </div>
         </div>
       </div>
       <div>
-        <div class="ui-percTrainData">
+        <div class="ui-percTrainData" style="display: none">
           <label for="percTrainData">Ratio of training to test data:&nbsp;&nbsp;<span class="value">XX</span>%</label>
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="percTrainData" min="10" max="90" step="10">
           </p>
         </div>
-        <div class="ui-noise">
+        <div class="ui-noise" style="display: none">
           <label for="noise">Noise:&nbsp;&nbsp;<span class="value">XX</span></label>
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="noise" min="0" max="50" step="5">
@@ -296,10 +308,10 @@ limitations under the License.
         </div>
         <br/>
         <div style="display:flex;">
-          <label class="ui-showTestData mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="show-test-data">
+          <!-- <label class="ui-showTestData mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="show-test-data">
             <input type="checkbox" id="show-test-data" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Show test data</span>
-          </label>
+          </label> -->
           <label class="ui-discretize mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="discretize">
             <input type="checkbox" id="discretize" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Discretize output</span>
@@ -311,15 +323,15 @@ limitations under the License.
   </div>
 
   <!-- More -->
-  <div class="more">
-    <!-- <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">keyboard_arrow_down</i></button> -->
+  <!-- <div class="more">
+    <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">keyboard_arrow_down</i></button>
     <button class="mdl-button mdl-js-button mdl-button--fab">
       <i class="material-icons">keyboard_arrow_down</i>
     </button>
-  </div>
+  </div> -->
   <!-- Article -->
 
-  <article id="article-text">
+  <!-- <article id="article-text">
     <div class="l--body">
       <h2>Um, What Is a Neural Network?</h2>
       <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we think the human brain works. First, a collection of software “neurons” are created and connected together, allowing them to send messages to each other. Next, the network is asked to solve a problem, which it attempts to do over and over, each time strengthening the connections that lead to success and diminishing those that lead to failure. For a more detailed introduction to neural networks, Michael Nielsen’s <a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> is a good place to start. For a more technical overview, try <a href="http://www.deeplearningbook.org/">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville.</p>
@@ -358,10 +370,10 @@ limitations under the License.
         <a href="https://research.google.com/bigpicture/">Big Picture</a> and <a href="https://research.google.com/teams/brain/">Google Brain</a> teams for feedback and guidance.
       </p>
     </div>
-  </article>
+  </article> -->
 
   <!-- Footer -->
-  <footer>
+  <!-- <footer>
     <div class="l--body">
       <a href="https://www.tensorflow.org/" class="logo">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 528 87" xml:space="preserve">
@@ -393,9 +405,9 @@ limitations under the License.
         <a href="https://github.com/tensorflow/playground">Source on GitHub</a>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <script src="bundle.js"></script>
   <!-- Google analytics -->
-  <script src="analytics.js"></script>
+  <!-- <script src="analytics.js"></script> -->
 </body>
 </html>
