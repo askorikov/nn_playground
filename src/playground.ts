@@ -68,14 +68,14 @@ let INPUTS: {[name: string]: InputFeature} = {
   // "xSquared": {f: (x, y) => x * x, label: "X_1^2"},
   // "ySquared": {f: (x, y) => y * y,  label: "X_2^2"},
   // "xTimesY": {f: (x, y) => x * y, label: "X_1X_2"},
-  "sinX0": {f: (x, y) => Math.sin(Math.PI * x/6), label: "sin(2^0πx)"},
-  "cosX0": {f: (x, y) => Math.cos(Math.PI * x/6), label: "cos(2^0πx)"},
-  "sinX1": {f: (x, y) => Math.sin(2*Math.PI * x/6), label: "sin(2^1πx))"},
-  "cosX1": {f: (x, y) => Math.cos(2*Math.PI * x/6), label: "cos(2^1πx))"},
-  "sinY0": {f: (x, y) => Math.sin(Math.PI * y/6), label: "sin(2^0πy)"},
-  "cosY0": {f: (x, y) => Math.cos(Math.PI * y/6), label: "cos(2^0πy)"},
-  "sinY1": {f: (x, y) => Math.sin(2*Math.PI * y/6), label: "sin(2^1πy)"},
-  "cosY1": {f: (x, y) => Math.cos(2*Math.PI * y/6), label: "sin(2^1πy)"}
+  "sinX0": {f: (x, y) => Math.sin(Math.PI * x/6), label: "sin πx"},
+  "cosX0": {f: (x, y) => Math.cos(Math.PI * x/6), label: "cos πx"},
+  "sinX1": {f: (x, y) => Math.sin(2*Math.PI * x/6), label: "sin 2πx"},
+  "cosX1": {f: (x, y) => Math.cos(2*Math.PI * x/6), label: "cos 2πx"},
+  "sinY0": {f: (x, y) => Math.sin(Math.PI * y/6), label: "sin πy"},
+  "cosY0": {f: (x, y) => Math.cos(Math.PI * y/6), label: "cos πy"},
+  "sinY1": {f: (x, y) => Math.sin(2*Math.PI * y/6), label: "sin 2πy"},
+  "cosY1": {f: (x, y) => Math.cos(2*Math.PI * y/6), label: "cos 2πy"}
 };
 
 let HIDABLE_CONTROLS = [
@@ -452,7 +452,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
     // Draw the input label.
     let text = nodeGroup.append("text").attr({
       class: "main-label",
-      x: -10,
+      x: -5,
       y: RECT_SIZE / 2, "text-anchor": "end"
     });
     if (/[_^]/.test(label)) {
